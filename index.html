@@ -20,12 +20,11 @@
               aria-expanded="false" aria-controls="nav-links">☰</button>
 
       <div class="nav-links" id="nav-links">
-        <a href="#philosophy"><small>01</small>PHILOSOPHY</a>
-        <a href="#skills"><small>02</small>WHAT I TEACH</a>
-        <a href="#projects"><small>03</small>MY TINY PROJECTS</a>
-        <a href="#career"><small>04</small>TEACHING RECORD</a>
-        <a href="#resources"><small>05</small>CLASS RESOURCES</a>
-        <a href="#contact"><small>06</small>CONTACT</a>
+        <a href="#philosophy"><small>01</small><span class="nav-label">PHILOSOPHY</span></a>
+        <a href="#skills"><small>02</small><span class="nav-label">WHAT I TEACH</span></a>
+        <a href="#projects"><small>03</small><span class="nav-label">MY TINY PROJECTS</span></a>
+        <a href="#career"><small>04</small><span class="nav-label">TEACHING RECORD</span></a>
+        <a href="#resources"><small>05</small><span class="nav-label">CLASS RESOURCES</span></a>
       </div>
     </nav>
   </header>
@@ -38,14 +37,18 @@
         <div class="hero-copy">
           <p class="eyebrow">M.K. · SOFTWARE EDUCATION</p>
           <h1>코드를 외우기보다<br><span class="highlight">직접 만들며</span> 배웁니다.</h1>
-          <p class="hero-description">웹 개발 현장에서 배운 문제 해결 경험을 수업으로 연결합니다. 초·중·고등학생이 AI와 데이터, 피지컬 컴퓨팅을 자기 작품으로 이해하도록 돕는 소프트웨어 강사 이미경입니다.</p>
+          <p class="hero-description">웹 개발 현장에서 배운 문제 해결 경험을 수업으로 연결합니다. 
+            초·중·고등학생이 AI와 데이터, 피지컬 컴퓨팅을 자기 작품으로 이해하도록 돕는 
+            소프트웨어 강사 이미경입니다. </p>
           <div class="hero-buttons">
-            <a class="btn btn-primary" href="#contact">강의 문의하기</a>
-            <a class="btn btn-secondary" href="#projects">프로젝트 보기</a>
+            <a class="btn btn-primary" href="#contact">연락처</a>
           </div>
           <div class="hero-tags" aria-label="주요 강의 주제">
               <span>파이썬</span><span>인공지능</span><span>데이터 분석</span><span>아두이노</span><span>로봇</span><span>앱인벤터</span>
           </div>
+        </div>
+        <div class="hero-art">
+          <img src="./img/main.png">
         </div>
       </div>
     </section>
@@ -156,8 +159,7 @@
     </section>
     <!-- 4. 강의 분야 끝 -->
 
-    <!-- 5. 프로젝트 시작 -->   
-    
+    <!-- 5. 프로젝트 시작 -->       
     <section class="section" id="projects">
       <div class="wrap">
         <p class="section-label">MY TINY PROJECTS</p>
@@ -169,7 +171,7 @@
             <button class="project-tab is-active" type="button" data-preview="maeum" aria-current="true"><small>01</small><span>마음 봄</span></button>
             <button class="project-tab" type="button" data-preview="news"><small>02</small><span>AI 뉴스 큐레이션</span></button>
             <button class="project-tab" type="button" data-preview="hangman"><small>03</small><span>손글씨 행맨</span></button>
-            <button class="project-tab" type="button" data-preview="iot"><small>04</small><span>IoT 대시보드</span></button>
+            <button class="project-tab" type="button" data-preview="iot"><small>04</small><span>스마트 버스 정류장</span></button>
           </div>
           <!-- 5-1. 왼쪽 프로젝트 목록 끝 -->
           <!-- 5-2. 오른쪽 미리보기 패널 시작 (프로젝트마다 1개) -->
@@ -178,7 +180,6 @@
               <span class="project-top">01 · PYTHON </span>
               <strong>마음 봄</strong>
               <p class="project-summary">감정과 일상을 돌아보는 웹앱</p>
-              <!-- 화면 캡처가 준비되면 아래 div 전체를 <img class="project-shot" src="img/파일명.png" alt="마음 봄 화면"> 로 바꾸세요. -->
               <img class="project-shot" src="./img/mind_small.png">
               <div class="pill-list"><span>Python</span><span>Streamlit</span><span>LoRA</span><span>Apps Script</span></div>
               <button class="project-more" type="button" data-project="maeum" aria-haspopup="dialog">자세히 보기 ↗</button>
@@ -201,11 +202,10 @@
             </div>
             <div class="project-pane" data-pane="iot" hidden>
               <span class="project-top">04 · ARDUINO IOT</span>
-              <strong>IoT 대시보드</strong>
-              <p class="project-summary">센서값 확인과 LED·모터 제어 실습</p>
-              <!-- 화면 캡처가 준비되면 아래 div 전체를 <img class="project-shot" src="img/파일명.png" alt="IoT 대시보드 화면"> 로 바꾸세요. -->
-              <div class="project-shot" aria-hidden="true">⚙</div>
-              <div class="pill-list"><span>Arduino</span><span>MQTT</span><span>Streamlit</span></div>
+              <strong>교통 약자를 위한 스마트 버스정류장</strong>
+              <p class="project-summary">전광판 웹앱, Arduino 버스정류장</p>
+              <img class="project-shot" src="./img/bus_small.png">
+              <div class="pill-list"><span>Arduino</span><span>Serial</span><span>Streamlit</span></div>
               <button class="project-more" type="button" data-project="iot" aria-haspopup="dialog">자세히 보기 ↗</button>
             </div>
           </div>
@@ -306,10 +306,11 @@
   <!-- 9. 화면 오른쪽 아래 TOP 버튼 끝 -->
 
   <!-- 10. 프로젝트 상세 팝업 시작 -->
-  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+  <dialog class="project-dialog" id="project-dialog">
     <button class="dialog-close" type="button" aria-label="닫기">×</button>
     <p class="section-label" id="dialog-category"></p>
     <h2 id="dialog-title"></h2>
+    <div id="dialog-img">이미지</div>
     <div id="dialog-details"></div>
   </dialog>
   <!-- 10. 프로젝트 상세 팝업 끝 -->

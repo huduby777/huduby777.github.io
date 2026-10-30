@@ -10,7 +10,7 @@
   --card: #fffcf7;
   --line: #d8d2c8;
   --dark: #25312d;
-  --sidebar-width: clamp(360px, 22vw, 420px);
+  --sidebar-width: clamp(100px, 22vw, 420px);
 }
 
 * { box-sizing: border-box; }
@@ -47,10 +47,57 @@ section { scroll-margin-top: 20px; }
 .logo { display: flex; flex-direction: column; gap: 16px; }
 .logo strong { font-size: 1.2rem; font-weight: 750; letter-spacing: -.03em; }
 .logo span { color: var(--muted); font-size: .78rem; line-height: 1.5; }
+/* ========================================================
+   [수정] 왼쪽 메뉴 호버 효과 (아래 .nav-links 관련 규칙 전체)
+   - 평소: 숫자만 표시
+   - 마우스를 올리면: 메뉴명이 숫자 왼쪽에서 아래→위로 떠오르며 나타남 (클릭 가능)
+   - 마우스를 떼면: 메뉴명이 사라지고 숫자만 남음
+   [수정 가이드]
+   - 떠오르는 거리  → .nav-label 의 translateY 안의 14px
+   - 속도           → .nav-label 의 transition (.3s)
+   - 메뉴명 색·굵기 → .nav-label 의 color / font-weight
+   - 숫자와 메뉴명 사이 간격 → .nav-links a 의 padding 좌우 값(12px)
+   ======================================================== */
 .nav-links { display: flex; flex-direction: column; gap: 8px; margin-top: 58px; }
-.nav-links a { display: flex; gap: 18px; align-items: baseline; padding: 7px 0; font-size: 1.0rem; }
-.nav-links a:hover, .nav-links a.is-active { color: var(--accent-dark); font-weight: 700; }
-.nav-links small { width: 18px; color: var(--muted); font-size: .94rem; }
+
+/* [수정] 링크: 숫자 크기만큼만 차지하도록 변경 (기존: 가로 전체 너비) */
+.nav-links a {
+  position: relative;          /* [수정] 메뉴명의 위치 기준 */
+  align-self: flex-start;      /* [수정] 가로로 늘어나지 않게 */
+  display: flex;
+  align-items: baseline;
+  margin-left: 80px;          /* [수정] 좌우 padding 12px 만큼 당겨 숫자 위치는 기존과 동일하게 유지 */
+  padding: 7px 12px;           /* [수정] 마우스를 올릴 수 있는 영역을 조금 넓힘 */
+  font-size: 1.0rem;
+}
+
+/* [수정] 숫자: 올리거나 현재 위치일 때 색 강조 (기존: 링크 전체가 강조되던 규칙) */
+.nav-links small { width: 18px; color: var(--muted); font-size: 1.6rem; transition: color .2s; }
+.nav-links a:hover small, .nav-links a.is-active small { color: var(--accent-dark); font-weight: 700; }
+
+/* [수정] 메뉴명: 평소 숨김(투명 + 14px 아래), 숫자의 왼쪽에 배치 */
+.nav-links .nav-label {
+  position: absolute;
+  right: 100%;                 /* 숫자 왼쪽 */
+  top: 50%;
+  padding-right: 4px;
+  white-space: nowrap;         /* 한 줄로 표시 */
+  color: var(--accent-dark);   /* ← 메뉴명 색 */
+  font-weight: 700;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;        /* 숨겨진 동안은 클릭·호버 방지 */
+  transform: translateY(calc(-50% + 14px));   /* ← 14px: 시작 위치(아래쪽) */
+  transition: opacity .3s ease, transform .3s ease, visibility .3s;
+}
+/* [수정] 마우스를 올리거나 키보드(Tab)로 선택하면 위로 떠오르며 표시 */
+.nav-links a:hover .nav-label,
+.nav-links a:focus-visible .nav-label {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;        /* 메뉴명도 클릭 가능 */
+  transform: translateY(-50%);
+}
 .menu-toggle { display: none; }
 main, .footer { margin-left: var(--sidebar-width); }
 
@@ -62,6 +109,24 @@ main, .footer { margin-left: var(--sidebar-width); }
   border-bottom: 1px solid var(--line);
   padding: 108px 0 95px;
 }
+
+.hero .wrap.hero-grid {
+  width: min(calc(100% - 350px), 1400px);
+  margin-left: 110px;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 450px);
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
 .hero-copy { max-width: 760px; }
 .eyebrow, .section-label {
   margin: 0;
@@ -321,7 +386,38 @@ main, .footer { margin-left: var(--sidebar-width); }
 .project-dialog h3 { margin: 21px 0 5px; font-size: .98rem; }
 .project-dialog p:not(.section-label) { margin: 0; color: var(--muted); font-size: .91rem; }
 .dialog-close { position: absolute; top: 8px; right: 16px; border: 0; background: none; color: var(--ink); font-size: 2rem; }
+.project-dialog {
+  width: 800px;           /* 다이얼로그 너비 */
+  max-width: 90vw;        /* 화면 너비의 90% 이내 */
+  max-height: 85vh;       /* 화면 높이의 85% 이내 */
+  overflow-y: auto;      /* 내용이 길면 세로 스크롤 */
 
+  padding: 24px;          /* 내부 여백 */
+  box-sizing: border-box; /* 너비에 여백과 테두리 포함 */
+  border: none;
+  border-radius: 16px;
+}
+#dialog-img {
+  margin: 20px 0;             /* 이미지 영역 위아래 여백 */
+}
+
+#dialog-img img {
+  display: block;
+  margin: 0 auto;             /* 이미지 가로 가운데 정렬 */
+  max-width: 100%;
+  height: auto;
+
+  border: 1px solid #d1d5db;   /* 연한 회색 테두리 */
+  border-radius: 12px;        /* 둥근 모서리 */
+  padding: 6px;               /* 이미지와 테두리 사이 여백 */
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+#dialog-details p {
+  white-space: pre-line; /* 문자열의 줄바꿈(\n)을 화면에 반영 */
+  line-height: 1.8;      /* 줄 간격 */
+}
 /* 태블릿·모바일: 고정된 왼쪽 메뉴를 위쪽 메뉴로 전환 */
 @media (max-width: 900px) {
   .site-header {
@@ -346,6 +442,18 @@ main, .footer { margin-left: var(--sidebar-width); }
     margin-inline: auto;
     padding: 0;
   }
+}
+
+/* [수정] 태블릿·모바일(900px 이하): 위쪽 메뉴로 바뀌므로 호버 효과를 끄고 기존처럼 숫자+메뉴명을 항상 표시 */
+@media (max-width: 900px) {
+  .nav-links a { align-self: stretch; margin-left: 0; padding: 7px 0; gap: 18px; }
+  .nav-links a .nav-label,
+  .nav-links a:hover .nav-label,
+  .nav-links a:focus-visible .nav-label {
+    position: static; opacity: 1; visibility: visible; pointer-events: auto;
+    transform: none; padding-right: 0; color: inherit; font-weight: 400;
+  }
+  .nav-links a:hover .nav-label, .nav-links a.is-active .nav-label { color: var(--accent-dark); font-weight: 700; }
 }
 
 /* 강의 철학 반응형: 태블릿 2단, 모바일 1단 (연결선 숨김)
