@@ -314,6 +314,7 @@ main, .footer { margin-left: var(--sidebar-width); }
 .number-grid strong { font-size: 1.8rem; letter-spacing: -.04em; }
 .number-grid span { color: #d3dfd6; font-size: .78rem; }
 
+
 /* 5. 공통 섹션과 강의 분야 */
 .section { padding: 82px 0 90px; border-bottom: 1px solid var(--line); }
 .section-tint { background: var(--wash); }
@@ -594,7 +595,7 @@ main, .footer { margin-left: var(--sidebar-width); }
 }
 .contact .section-label { color: var(--accent-dark); }
 .contact p:not(.section-label) { margin-bottom: 28px; color: var(--muted); }
-.footer { padding: 20px 0; color: var(--muted); font-size: .78rem; }
+.footer { padding: 20px 0; color: var(--muted); font-size: .78rem; background: var(--dark);}
 .footer .wrap { display: flex; justify-content: space-between; gap: 12px; }
 
 /* 11. TOP 버튼 */
@@ -656,6 +657,33 @@ main, .footer { margin-left: var(--sidebar-width); }
   box-sizing: border-box;
 }
 #dialog-details p { white-space: pre-line; line-height: 1.8; }
+
+/* 팝업 상세 내용: 왼쪽 제목 + 오른쪽 내용 (에디토리얼형) */
+.detail-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.detail-row:first-child { border-top: 0; padding-top: 4px; }
+.detail-label {
+  color: var(--accent-dark);
+  font-size: .85rem;
+  font-weight: 700;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.detail-body { color: var(--muted); font-size: .91rem; line-height: 1.8; }
+.detail-body p { margin: 0 0 6px; }
+.detail-body p:last-child { margin-bottom: 0; }
+.detail-row:first-child .detail-body { color: var(--ink); font-size: 1rem; }
+.detail-item { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px; padding: 4px 0; }
+.detail-item em { padding-top: 1px; color: var(--accent); font-size: .8rem; font-style: normal; font-weight: 800; }
+.detail-item b { color: var(--ink); font-weight: 700; }
+@media (max-width: 600px) {
+  .detail-row { grid-template-columns: 1fr; gap: 6px; }
+}
 
 /* 13. 반응형 — 동일 breakpoint를 한곳에 모았습니다. */
 @media (max-width: 1100px) {
