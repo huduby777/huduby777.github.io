@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘의 AI 뉴스 — AI 뉴스 큐레이션 | 프로젝트 상세</title>
+  <link rel="stylesheet" href="./lib/styles.css">
+  <style>
+    .detail-container { max-width: 860px; margin: 60px auto; padding: 0 24px; }
+    .detail-back { display: inline-flex; align-items: center; margin-bottom: 24px; color: var(--accent); font-weight: 700; }
+    .detail-hero-img { width: 100%; border: 1px solid var(--line); border-radius: 12px; margin: 24px 0 36px; }
+  </style>
+</head>
+<body>
+  <main class="detail-container">
+    <p class="section-label">AI · STREAMLIT · NEWS</p>
+    <h2>오늘의 AI 뉴스 — AI 뉴스 큐레이션</h2>
+    <img class="detail-hero-img" src="./img/news_img.png" alt="AI 뉴스 큐레이션 화면">
+
+    <div class="detail-content">
+      <div class="detail-row">
+        <div class="detail-label">프로젝트 소개</div>
+        <div class="detail-body">
+          <p>AI 뉴스를 수집하고, GPT API를 활용해서 주요 기사를 선별·요약하여 카드뉴스로 제공하는 웹앱입니다. 복잡한 AI 동향을 빠르게 파악하고, 뉴스와 관련된 용어를 함께 학습할 수 있도록 제작했습니다.</p>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">주요 기능</div>
+        <div class="detail-body">
+          <div class="detail-item"><em>01</em><span><b>뉴스 수집</b> · AI타임즈 RSS에서 최대 20개의 기사 제목, 요약, 발행일과 원문 링크를 가져옵니다.</span></div>
+          <div class="detail-item"><em>02</em><span><b>주요 뉴스 선정</b> · 중요도, 최신성, 대중성, 다양성, 교육적 가치, 신뢰성을 기준으로 AI가 TOP 6 뉴스를 선정하도록 구성했습니다.</span></div>
+          <div class="detail-item"><em>03</em><span><b>카드뉴스 구성</b> · 선정된 뉴스의 짧은 제목, 한 줄 요약, 중요성, 키워드와 카테고리 등을 생성하여 카드뉴스로 제공합니다.</span></div>
+          <div class="detail-item"><em>04</em><span><b>오늘의 핵심 흐름</b> · 선정된 뉴스 전체를 아우르는 핵심 메시지와 선정 기준을 안내합니다.</span></div>
+          <div class="detail-item"><em>05</em><span><b>AI·IT 용어 학습</b> · 뉴스와 관련된 용어 하나를 선정하여 중학생도 이해할 수 있는 짧은 설명을 제공합니다.</span></div>
+          <div class="detail-item"><em>06</em><span><b>지난 브리핑 조회</b> · 날짜별로 저장한 결과를 사이드바에서 선택하여 다시 확인할 수 있습니다.</span></div>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">데이터 처리 과정</div>
+        <div class="detail-body">
+          <p>앱 실행 시 당일 저장된 브리핑이 없으면 RSS 뉴스를 수집하고 OpenAI API에 선별과 요약을 요청합니다. 생성 결과를 JSON 파일로 저장한 뒤 HTML 템플릿을 통해 화면에 표시하며, 이미 저장된 브리핑은 재사용하여 반복적인 API 호출을 줄입니다.</p>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">사용 기술</div>
+        <div class="detail-body">
+          <p>Python, Streamlit, OpenAI API, Feedparser, JSON, HTML·CSS</p>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-label">구현 포인트</div>
+        <div class="detail-body">
+          <p>뉴스 수집, AI 콘텐츠 생성, 날짜별 저장, 화면 출력을 연결했습니다. 데이터 처리 함수와 화면 템플릿을 분리하여 기능과 디자인을 각각 수정하기 쉽도록 구성했습니다.<br>또한 기사 제목과 RSS 요약을 근거로 내용을 작성하고, 원문 링크를 유지하며, 특정 주제에 편중되지 않도록 프롬프트에 기준을 명시했습니다. 개인정보, 편향, 저작권 등 뉴스와 관련된 윤리적 고려사항도 함께 생성하도록 설계했습니다.</p>
+        </div>
+      </div>
+      <div class="detail-row">
+        <a class="project-more" onclick="window.close();">닫 기 ↗</a>
+      </div>      
+    </div>
+  </main>
+</body>
+</html>
