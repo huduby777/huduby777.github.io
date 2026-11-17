@@ -1,0 +1,616 @@
+{
+  "metadata": {
+    "title": "중고등학생용 영어 행맨 문제",
+    "version": 1,
+    "total_count": 100,
+    "levels": {
+      "1": "중학생 수준",
+      "2": "고등학생 수준"
+    },
+    "note": "모든 word 값은 행맨 게임에서 바로 사용할 수 있도록 공백과 하이픈이 없는 소문자 영단어로 구성했습니다."
+  },
+  "1": [
+    {
+      "word": "animal",
+      "meaning": "동물",
+      "hint": "사람과 식물을 제외한 살아 있는 생물입니다.",
+      "category": "생물"
+    },
+    {
+      "word": "apple",
+      "meaning": "사과",
+      "hint": "빨간색이나 초록색을 띠는 둥근 과일입니다.",
+      "category": "음식"
+    },
+    {
+      "word": "beach",
+      "meaning": "해변",
+      "hint": "바다와 모래가 만나는 장소입니다.",
+      "category": "장소"
+    },
+    {
+      "word": "bread",
+      "meaning": "빵",
+      "hint": "밀가루를 반죽하여 구운 음식입니다.",
+      "category": "음식"
+    },
+    {
+      "word": "chair",
+      "meaning": "의자",
+      "hint": "사람이 앉을 때 사용하는 가구입니다.",
+      "category": "생활"
+    },
+    {
+      "word": "cloud",
+      "meaning": "구름",
+      "hint": "하늘에 떠 있는 작은 물방울의 모임입니다.",
+      "category": "자연"
+    },
+    {
+      "word": "dance",
+      "meaning": "춤추다",
+      "hint": "음악에 맞추어 몸을 움직이는 행동입니다.",
+      "category": "예술"
+    },
+    {
+      "word": "dream",
+      "meaning": "꿈",
+      "hint": "잠을 잘 때 보거나 미래에 이루고 싶은 것입니다.",
+      "category": "감정"
+    },
+    {
+      "word": "earth",
+      "meaning": "지구",
+      "hint": "우리가 살고 있는 행성입니다.",
+      "category": "과학"
+    },
+    {
+      "word": "family",
+      "meaning": "가족",
+      "hint": "부모, 자녀처럼 가까운 관계로 이루어진 집단입니다.",
+      "category": "사람"
+    },
+    {
+      "word": "flower",
+      "meaning": "꽃",
+      "hint": "식물에서 피어나며 향기와 색깔을 가진 부분입니다.",
+      "category": "식물"
+    },
+    {
+      "word": "friend",
+      "meaning": "친구",
+      "hint": "서로 친하게 지내며 믿고 도와주는 사람입니다.",
+      "category": "사람"
+    },
+    {
+      "word": "fruit",
+      "meaning": "과일",
+      "hint": "사과, 바나나, 포도 등을 묶어 부르는 말입니다.",
+      "category": "음식"
+    },
+    {
+      "word": "glass",
+      "meaning": "유리 또는 유리잔",
+      "hint": "창문이나 투명한 컵을 만드는 재료입니다.",
+      "category": "생활"
+    },
+    {
+      "word": "green",
+      "meaning": "초록색",
+      "hint": "나뭇잎에서 흔히 볼 수 있는 색입니다.",
+      "category": "색상"
+    },
+    {
+      "word": "happy",
+      "meaning": "행복한",
+      "hint": "기쁘고 만족스러운 기분을 나타냅니다.",
+      "category": "감정"
+    },
+    {
+      "word": "heart",
+      "meaning": "심장 또는 마음",
+      "hint": "몸속에서 피를 순환시키는 기관입니다.",
+      "category": "신체"
+    },
+    {
+      "word": "house",
+      "meaning": "집",
+      "hint": "사람이 생활하고 잠을 자는 건물입니다.",
+      "category": "장소"
+    },
+    {
+      "word": "juice",
+      "meaning": "주스",
+      "hint": "과일이나 채소를 짜서 만든 음료입니다.",
+      "category": "음식"
+    },
+    {
+      "word": "light",
+      "meaning": "빛",
+      "hint": "사물을 눈으로 볼 수 있게 해주는 것입니다.",
+      "category": "과학"
+    },
+    {
+      "word": "lunch",
+      "meaning": "점심",
+      "hint": "아침과 저녁 사이에 먹는 식사입니다.",
+      "category": "생활"
+    },
+    {
+      "word": "money",
+      "meaning": "돈",
+      "hint": "물건이나 서비스를 사고팔 때 사용합니다.",
+      "category": "경제"
+    },
+    {
+      "word": "month",
+      "meaning": "달, 월",
+      "hint": "일 년을 열두 부분으로 나눈 시간 단위입니다.",
+      "category": "시간"
+    },
+    {
+      "word": "mouse",
+      "meaning": "쥐 또는 마우스",
+      "hint": "작은 동물이자 컴퓨터 입력 장치의 이름입니다.",
+      "category": "생물"
+    },
+    {
+      "word": "movie",
+      "meaning": "영화",
+      "hint": "극장이나 화면에서 보는 영상 이야기입니다.",
+      "category": "문화"
+    },
+    {
+      "word": "music",
+      "meaning": "음악",
+      "hint": "소리와 리듬을 이용해 감정을 표현하는 예술입니다.",
+      "category": "예술"
+    },
+    {
+      "word": "night",
+      "meaning": "밤",
+      "hint": "해가 진 뒤부터 다시 뜨기 전까지의 시간입니다.",
+      "category": "시간"
+    },
+    {
+      "word": "ocean",
+      "meaning": "대양, 바다",
+      "hint": "지구 표면의 넓은 부분을 차지하는 큰 바다입니다.",
+      "category": "자연"
+    },
+    {
+      "word": "paper",
+      "meaning": "종이",
+      "hint": "글을 쓰거나 그림을 그릴 때 사용하는 얇은 재료입니다.",
+      "category": "학용품"
+    },
+    {
+      "word": "party",
+      "meaning": "파티, 모임",
+      "hint": "여러 사람이 모여 축하하고 즐기는 행사입니다.",
+      "category": "문화"
+    },
+    {
+      "word": "phone",
+      "meaning": "전화기",
+      "hint": "멀리 있는 사람과 통화할 때 사용하는 기기입니다.",
+      "category": "기술"
+    },
+    {
+      "word": "plant",
+      "meaning": "식물",
+      "hint": "햇빛과 물을 이용해 자라는 생물입니다.",
+      "category": "식물"
+    },
+    {
+      "word": "queen",
+      "meaning": "여왕",
+      "hint": "왕국을 다스리는 여성 군주입니다.",
+      "category": "사람"
+    },
+    {
+      "word": "river",
+      "meaning": "강",
+      "hint": "육지를 따라 바다나 호수로 흐르는 큰 물줄기입니다.",
+      "category": "자연"
+    },
+    {
+      "word": "school",
+      "meaning": "학교",
+      "hint": "학생들이 공부하고 친구를 만나는 곳입니다.",
+      "category": "장소"
+    },
+    {
+      "word": "smile",
+      "meaning": "미소",
+      "hint": "기쁠 때 입꼬리를 올려 짓는 표정입니다.",
+      "category": "감정"
+    },
+    {
+      "word": "snow",
+      "meaning": "눈",
+      "hint": "추운 날 하늘에서 내리는 흰 얼음 결정입니다.",
+      "category": "날씨"
+    },
+    {
+      "word": "sport",
+      "meaning": "운동, 스포츠",
+      "hint": "규칙에 따라 몸을 움직이며 겨루는 활동입니다.",
+      "category": "활동"
+    },
+    {
+      "word": "star",
+      "meaning": "별",
+      "hint": "밤하늘에서 스스로 빛을 내는 천체입니다.",
+      "category": "과학"
+    },
+    {
+      "word": "story",
+      "meaning": "이야기",
+      "hint": "사건과 인물의 내용을 말이나 글로 나타낸 것입니다.",
+      "category": "문화"
+    },
+    {
+      "word": "table",
+      "meaning": "탁자",
+      "hint": "물건을 올려놓거나 식사할 때 사용하는 가구입니다.",
+      "category": "생활"
+    },
+    {
+      "word": "tiger",
+      "meaning": "호랑이",
+      "hint": "주황색 몸에 검은 줄무늬가 있는 맹수입니다.",
+      "category": "생물"
+    },
+    {
+      "word": "train",
+      "meaning": "기차",
+      "hint": "철로 위를 달리며 사람과 짐을 운반합니다.",
+      "category": "교통"
+    },
+    {
+      "word": "water",
+      "meaning": "물",
+      "hint": "사람을 포함한 생물이 살아가는 데 꼭 필요합니다.",
+      "category": "자연"
+    },
+    {
+      "word": "weather",
+      "meaning": "날씨",
+      "hint": "맑음, 비, 눈, 바람 같은 대기의 상태입니다.",
+      "category": "날씨"
+    },
+    {
+      "word": "window",
+      "meaning": "창문",
+      "hint": "건물 안으로 빛과 공기가 들어오게 합니다.",
+      "category": "생활"
+    },
+    {
+      "word": "winter",
+      "meaning": "겨울",
+      "hint": "일 년 중 가장 추운 계절입니다.",
+      "category": "계절"
+    },
+    {
+      "word": "world",
+      "meaning": "세계",
+      "hint": "사람들이 살아가는 지구 전체를 뜻합니다.",
+      "category": "사회"
+    },
+    {
+      "word": "write",
+      "meaning": "쓰다",
+      "hint": "글자나 문장을 종이나 화면에 나타내는 행동입니다.",
+      "category": "학습"
+    },
+    {
+      "word": "young",
+      "meaning": "젊은, 어린",
+      "hint": "나이가 많지 않은 상태를 나타냅니다.",
+      "category": "상태"
+    }
+  ],
+  "2": [
+    {
+      "word": "achieve",
+      "meaning": "성취하다",
+      "hint": "노력한 끝에 목표나 결과를 이루는 것입니다.",
+      "category": "행동"
+    },
+    {
+      "word": "adapt",
+      "meaning": "적응하다",
+      "hint": "새로운 환경이나 상황에 맞게 변화하는 것입니다.",
+      "category": "행동"
+    },
+    {
+      "word": "analyze",
+      "meaning": "분석하다",
+      "hint": "대상을 여러 부분으로 나누어 자세히 살펴보는 것입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "approach",
+      "meaning": "접근하다, 접근 방식",
+      "hint": "대상에 가까이 가거나 문제를 다루는 방법을 뜻합니다.",
+      "category": "학문"
+    },
+    {
+      "word": "assume",
+      "meaning": "가정하다",
+      "hint": "확실한 증거 없이 어떤 내용을 사실이라고 생각하는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "benefit",
+      "meaning": "이익, 혜택",
+      "hint": "사람이나 상황에 도움이 되는 좋은 결과입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "challenge",
+      "meaning": "도전, 도전하다",
+      "hint": "어려운 목표를 이루기 위해 시도하는 것입니다.",
+      "category": "행동"
+    },
+    {
+      "word": "circumstance",
+      "meaning": "상황, 환경",
+      "hint": "사건이나 행동에 영향을 미치는 주변 조건입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "communicate",
+      "meaning": "의사소통하다",
+      "hint": "생각이나 정보를 다른 사람과 주고받는 것입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "compare",
+      "meaning": "비교하다",
+      "hint": "둘 이상의 공통점과 차이점을 살펴보는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "complex",
+      "meaning": "복잡한",
+      "hint": "여러 요소가 얽혀 있어 이해하거나 해결하기 어려운 상태입니다.",
+      "category": "상태"
+    },
+    {
+      "word": "conclude",
+      "meaning": "결론짓다",
+      "hint": "정보와 근거를 바탕으로 최종 판단을 내리는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "conduct",
+      "meaning": "수행하다, 행동",
+      "hint": "연구나 활동을 계획에 따라 실행하는 것을 뜻합니다.",
+      "category": "학문"
+    },
+    {
+      "word": "consequence",
+      "meaning": "결과",
+      "hint": "어떤 행동이나 사건 때문에 뒤따라 발생한 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "consider",
+      "meaning": "고려하다",
+      "hint": "결정하기 전에 여러 조건을 주의 깊게 생각하는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "contrast",
+      "meaning": "대조하다, 대조",
+      "hint": "두 대상의 뚜렷한 차이를 드러내는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "contribute",
+      "meaning": "기여하다",
+      "hint": "공동의 결과를 위해 자신의 힘이나 자원을 보태는 것입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "culture",
+      "meaning": "문화",
+      "hint": "한 사회가 공유하는 생활 방식, 가치와 관습입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "decline",
+      "meaning": "감소하다, 쇠퇴하다",
+      "hint": "수량이나 상태가 이전보다 낮아지는 것입니다.",
+      "category": "변화"
+    },
+    {
+      "word": "define",
+      "meaning": "정의하다",
+      "hint": "단어나 개념의 뜻을 분명하게 설명하는 것입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "demonstrate",
+      "meaning": "입증하다, 보여주다",
+      "hint": "증거나 예시를 통해 어떤 사실을 명확히 나타내는 것입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "economy",
+      "meaning": "경제",
+      "hint": "상품과 서비스의 생산, 소비, 분배와 관련된 체계입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "environment",
+      "meaning": "환경",
+      "hint": "생물이나 사람이 살아가는 데 영향을 주는 주변 조건입니다.",
+      "category": "환경"
+    },
+    {
+      "word": "establish",
+      "meaning": "설립하다, 확립하다",
+      "hint": "조직이나 제도, 사실을 굳게 세우는 것입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "evidence",
+      "meaning": "증거",
+      "hint": "주장이나 판단이 사실임을 뒷받침하는 자료입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "factor",
+      "meaning": "요인",
+      "hint": "결과가 만들어지는 데 영향을 미치는 요소입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "function",
+      "meaning": "기능, 작용하다",
+      "hint": "대상이나 부분이 맡아서 하는 역할입니다.",
+      "category": "과학"
+    },
+    {
+      "word": "identify",
+      "meaning": "식별하다, 확인하다",
+      "hint": "대상의 특징을 보고 무엇인지 알아내는 것입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "impact",
+      "meaning": "영향, 충격",
+      "hint": "사건이나 행동이 다른 대상에 미치는 강한 효과입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "improve",
+      "meaning": "향상시키다",
+      "hint": "상태나 능력을 이전보다 더 좋게 만드는 것입니다.",
+      "category": "변화"
+    },
+    {
+      "word": "indicate",
+      "meaning": "나타내다, 가리키다",
+      "hint": "표시나 정보로 어떤 사실을 보여주는 것입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "individual",
+      "meaning": "개인, 개별적인",
+      "hint": "집단을 구성하는 한 사람이나 하나의 대상을 뜻합니다.",
+      "category": "사회"
+    },
+    {
+      "word": "interpret",
+      "meaning": "해석하다",
+      "hint": "정보나 표현이 가진 의미를 이해하고 설명하는 것입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "maintain",
+      "meaning": "유지하다",
+      "hint": "상태나 수준이 계속 이어지도록 관리하는 것입니다.",
+      "category": "행동"
+    },
+    {
+      "word": "method",
+      "meaning": "방법",
+      "hint": "목표를 이루거나 문제를 해결하기 위한 체계적인 방식입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "occur",
+      "meaning": "발생하다",
+      "hint": "사건이나 현상이 실제로 일어나는 것입니다.",
+      "category": "변화"
+    },
+    {
+      "word": "participate",
+      "meaning": "참여하다",
+      "hint": "활동이나 모임의 한 구성원으로 함께하는 것입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "perspective",
+      "meaning": "관점",
+      "hint": "사물이나 문제를 바라보고 이해하는 방식입니다.",
+      "category": "사고"
+    },
+    {
+      "word": "policy",
+      "meaning": "정책",
+      "hint": "정부나 조직이 목표를 달성하기 위해 정한 방침입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "principle",
+      "meaning": "원칙, 원리",
+      "hint": "판단이나 행동의 기본이 되는 규칙 또는 법칙입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "process",
+      "meaning": "과정",
+      "hint": "결과에 이르기까지 차례로 진행되는 단계입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "require",
+      "meaning": "요구하다, 필요로 하다",
+      "hint": "어떤 목적을 위해 반드시 있어야 함을 뜻합니다.",
+      "category": "행동"
+    },
+    {
+      "word": "respond",
+      "meaning": "응답하다",
+      "hint": "질문이나 상황에 대해 말이나 행동으로 반응하는 것입니다.",
+      "category": "행동"
+    },
+    {
+      "word": "significant",
+      "meaning": "중요한, 상당한",
+      "hint": "의미나 영향이 커서 주목할 만한 상태입니다.",
+      "category": "상태"
+    },
+    {
+      "word": "society",
+      "meaning": "사회",
+      "hint": "사람들이 관계와 제도를 이루며 살아가는 공동체입니다.",
+      "category": "사회"
+    },
+    {
+      "word": "specific",
+      "meaning": "구체적인, 특정한",
+      "hint": "범위나 대상이 분명하게 정해진 상태입니다.",
+      "category": "상태"
+    },
+    {
+      "word": "structure",
+      "meaning": "구조",
+      "hint": "여러 부분이 서로 연결되고 조직된 방식입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "theory",
+      "meaning": "이론",
+      "hint": "현상을 체계적으로 설명하기 위해 세운 생각의 틀입니다.",
+      "category": "학문"
+    },
+    {
+      "word": "various",
+      "meaning": "다양한",
+      "hint": "종류나 모습이 여러 가지인 상태입니다.",
+      "category": "상태"
+    },
+    {
+      "word": "voluntary",
+      "meaning": "자발적인",
+      "hint": "강요받지 않고 자신의 뜻으로 하는 상태입니다.",
+      "category": "태도"
+    }
+  ]
+}
