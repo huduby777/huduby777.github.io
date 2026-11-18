@@ -45,15 +45,17 @@ with st.sidebar:
 
     # 오늘 날짜의 뉴스가 없는 경우 RSS 데이터 가져오기    
     if search_today not in available_date:
-        ## 뉴스 기사 수집
-        news_list = lb.fetch_news_articles(max_count=20)
-        # # 뉴스 기사 선정 및 카드뉴스용 JSON 생성
-        today_top_news_json = lb.get_top_n_news_data(news_list)
-        # # 테스트를 위해 json파일로 저장
-        lb.save_selected_news_json(today_top_news_json, f"data/{search_today}.json")
-        # 뉴스 기사 선정 및 카드뉴스용 JSON 생성
-        today_top_news_json = lb.load_selected_news_json(f"data/{search_today}.json")
-        available_date = lb.get_available_dates(DIR_PATH)
+        try:
+            ## RSS에서 뉴스 기사 수집
+            news_list = lb.fetch_news_articles(max_count=20)
+            # # 인공지능을 활용해서 6개의 뉴스 기사 선정
+            today_top_news_json = lb.get_top_n_news_data(news_list)
+            # json파일로 저장
+            lb.save_selected_news_json(today_top_news_json, f"data/{search_today}.json")
+            available_date = lb.get_available_dates(DIR_PATH)
+        except Exception as e:
+            st.warning(f"오늘({search_today}) 뉴스 생성에 실패했습니다. 저장된 날짜의 뉴스를 보여드립니다.")
+            st.caption(f"사유: {e}")
     
     select_date = st.selectbox(
         "날짜 조회",
@@ -62,21 +64,21 @@ with st.sidebar:
         label_visibility="collapsed"
     )
     
-    if select_date != "":
+    if select_date:
         search_today = select_date
-    # else:       
-    #     search_today = "2026-06-10"
 
     #################
     ## 메인 title 영역
     #################
     # 전체 뉴스 가져오기
     news_list = lb.load_selected_news_json(f"data/{search_today}.json")
+    if not news_list:
+        st.error(f"{search_today} 뉴스 데이터를 불러오지 못했습니다.")
+        st.stop()
 
     # #############
     # # header 구성
     # #############
-    selected_date = news_list["selected_date"]
     selection_basis = news_list["selection_basis"]
     today_core_message = news_list["today_core_message"]
     today_word = news_list["today_word"]

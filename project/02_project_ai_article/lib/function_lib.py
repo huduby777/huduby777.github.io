@@ -1,11 +1,9 @@
 import json
 import os, re
-from google import genai
 from dotenv import load_dotenv
 import feedparser
 import datetime
 from pathlib import Path
-
 
 from openai import OpenAI
 
@@ -63,19 +61,12 @@ def fetch_news_articles(max_count=20):
 # 뉴스 기사 제목과 요약
 def get_top_n_news_data(news_list,top_n=6):
     load_dotenv()
-
-    # Gemini API 키를 환경 변수에서 로드
-    # APIKEY = os.getenv("GEMINI_API_KEY")
-    # client = genai.Client(api_key=APIKEY)
-        
+       
     # OPEN API 키를 환경 변수에서 로드
-    APIKEY = os.getenv("OPEN_API_KEY")
+    APIKEY = os.getenv("OPENAI_API_KEY")
     client = OpenAI(api_key=APIKEY)
-   
-    
-    """
-    News_list의 내용을 기반으로 Gemini API가 TOP{top_n} 뉴스 결과를 JSOIN파일로 반환
-    """    
+       
+    # News_list의 내용을 기반으로 OpenAI API가 TOP{top_n} 뉴스 결과를 json파일로 반환
     prompt = f"""
 너는 AI 뉴스 큐레이션 전문가이자 AI 리터러시 교육자이다.
 
@@ -250,26 +241,19 @@ def get_top_n_news_data(news_list,top_n=6):
     아래 JSON 배열에 제공되는 20개의 뉴스를 분석해라.
 
     {json.dumps(news_list, ensure_ascii=False,indent=2)}"""
-
-    # response = client.models.generate_content(
-    #     model="gemini-2.5-flash-lite",
-    #     contents=prompt
-    # )
-    # return response.text
-   
+ 
     response = client.responses.create(
         model="gpt-5.4-mini",
-        input= prompt,
-        store=True,
+        input= prompt
     )
 
     return response.output_text
     
 
-# Gemini API에서 반환된 JSON에 포함된 불필요한 문자 제거
-def clean_gemini_json_text(response_text: str) -> str:
+# 반환된 JSON에 포함된 불필요한 문자 제거
+def clean_json_text(response_text: str) -> str:
     """
-    Gemini 응답 문자열에서 JSON과 관련 없는 마크다운 코드블록,
+    OpenAI API가 응답 문자열에서 JSON과 관련 없는 마크다운 코드블록,
     앞뒤 따옴표, 불필요한 공백을 제거하고 순수 JSON 문자열만 반환한다.
     """
     if not isinstance(response_text, str):
@@ -290,7 +274,6 @@ def clean_gemini_json_text(response_text: str) -> str:
     text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
     text = re.sub(r"^```\s*", "", text)
     text = re.sub(r"\s*```$", "", text)
-    text = re.sub(r"\s*```$", "", text)
 
     # 3. JSON 시작과 끝만 추출
     start_index = text.find("{")
@@ -301,19 +284,17 @@ def clean_gemini_json_text(response_text: str) -> str:
 
     text = text[start_index:end_index + 1]
     return text
-
+        
 def save_selected_news_json(data, filename=None):
     """
-    Gemini API가 반환한 TOP N개의 뉴스 결과를 JSON 파일로 저장하는 함수
+    OpenAI API가 반환한 TOP N개의 뉴스 결과를 JSON 파일로 저장하는 함수
     """
-    # Gemini JSON 불필요한 문제 제거
-    cleaned_text = clean_gemini_json_text(data)
-    # print("*"*10)
-    # print(cleaned_text)
-    # print("*"*10)
+    # OpenAI JSON 불필요한 문제 제거
+    cleaned_text = clean_json_text(data)
     if filename is None:
-        today = datetime.now().strftime("%Y-%m-%d")
+        today = datetime.datetime.now().strftime("%Y-%m-%d")
         filename = f"data/{today}.json"
+    
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(cleaned_text, f, ensure_ascii=False, indent=2)
     return filename
@@ -322,13 +303,12 @@ def load_selected_news_json(filename):
     """
     저장된 JSON 파일에서 TOP6 뉴스 결과를 불러오는 함수
     """
-    with open(filename, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    
-    # # 파일 안에 JSON 문자열이 저장된 경우 한 번 더 변환
     try:
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        # # 파일 안에 JSON 문자열이 저장된 경우 한 번 더 변환
         if isinstance(data, str):
             data = json.loads(data)
-    except json.JSONDecodeError:
-        return "JSONDecodeError"        
-    return data
+        return data
+    except (FileNotFoundError,json.JSONDecodeError):
+        return None

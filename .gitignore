@@ -14,3 +14,18 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+
+# --- 보안 / 불필요 파일 (포트폴리오 제출용) ---
+secrets.toml
+**/secrets.toml
+*.pem
+*.key
+*credential*.json
+
+# 학습 원본 데이터 (AI Hub 이용 정책상 재배포 금지)
+*.xlsx
+*.csv
+
+# 사용하지 않는 모델 · 압축 파일
+project/03_project_hangman/lib/best_emnist_balanced_cnn.keras
+*.zip

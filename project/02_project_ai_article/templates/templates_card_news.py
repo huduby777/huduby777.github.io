@@ -1,6 +1,4 @@
 from html import escape
-from pathlib import Path
-import base64
 def get_css():
   return """
 :root {
@@ -652,7 +650,7 @@ def render_card(news):
                      "윤리·사회 영향","콘텐츠·미디어",
                      "하드웨어·인프라","기타·종합"]
     
-    category_image = f"https://raw.githubusercontent.com/huduby/top_news/refs/heads/main/static/img/{category_name.index(category)}.jpg"
+    category_image = f"app/static/img/{category_name.index(category)}.jpg"
     
     return f"""
     <article class="news-card">
@@ -726,26 +724,3 @@ def render_html_footer():
       </body>
     </html>
   """
-  
-def render_page(today_info, news_list):
-    return f"""
-    <!DOCTYPE html>
-    <html lang="ko">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-      <style>
-        {get_css()}
-      </style>
-    </head>
-    <body>
-      <div class="page-container">
-        {render_header(today_info)}
-        {render_cards(news_list)}
-      </div>
-    </body>
-    </html>
-    """
