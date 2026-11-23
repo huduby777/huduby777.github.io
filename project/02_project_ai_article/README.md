@@ -1,24 +1,41 @@
-# 📰 오늘의 AI 뉴스 - 생성형 AI 기반 AI 뉴스 TOP 6 큐레이션 웹앱
+# 📰 오늘의 AI 뉴스 - 생성형 AI 기반 뉴스 TOP 6 큐레이션 웹앱
 
-> AI타임즈 RSS를 수집하고, 생성형 AI가 오늘 꼭 알아야 할 뉴스 TOP 6를 선정·요약·윤리 검토까지 해서 카드뉴스로 보여주는 Streamlit 웹앱 prototype입니다.
+> AI타임즈 RSS를 수집하고, 생성형 AI가 오늘 꼭 알아야 할 뉴스 TOP 6를 선정·요약·윤리 검토까지 해서 카드뉴스로 보여주는 Streamlit 웹앱 prototype이다.
 
 ![오늘의 AI 뉴스 화면](../../img/news_img.png)
 
-
 ---
 
-## 📌 프로젝트 소개
+## 📌 프로젝트 개요
 
-AI 뉴스는 매일 쏟아지지만, 여러 사이트를 직접 돌아다니며 중요한 뉴스를 고르고 흐름을 파악하기는 번거롭습니다. 특히 전문적으로 뉴스를 추적하지는 않지만 AI에 관심이 있는 사람에게는 **핵심 흐름을 빠르게 볼 수 있는 요약 도구**가 필요하다고 느꼈습니다.
+AI 뉴스는 매일 쏟아지지만, 여러 사이트를 직접 돌아다니며 중요한 뉴스를 고르고 흐름을 파악하기는 번거롭다. 특히 전문적으로 뉴스를 추적하지는 않지만 AI에 관심이 있는 사람에게는 **핵심 흐름을 빠르게 볼 수 있는 요약 도구**가 필요하다고 느꼈다.
 
-이 프로젝트는 ChatGPT·Gemini·Canva AI를 활용한 **바이브코딩**으로 기획부터 코드, 디자인까지 진행한 prototype입니다. 처음 목표는 매일 오전 10시에 자동 수집하는 스케줄러였지만 구현 부담이 커서 제외하고, **접속했을 때 오늘 날짜의 뉴스 파일이 없으면 그때 1회 수집·생성하는 방식**으로 바꾸었습니다.
+이 프로젝트는 ChatGPT·Gemini·Canva AI를 활용한 **바이브코딩**으로 기획부터 코드, 디자인까지 진행했다. 처음 목표는 매일 오전 10시에 자동 수집하는 스케줄러였지만 구현 부담이 커서 제외하고, **접속했을 때 오늘 날짜의 뉴스 파일이 없으면 그때 1회 수집·생성하는 방식**으로 바꾸었다.
+
+## 🎯 프로젝트 목표
+
+- RSS 수집 → AI 선정·요약 → 카드뉴스 출력까지 **데이터가 흐르는 전체 파이프라인** 구현
+- 프롬프트(페르소나 · 선정 기준 · 출력 JSON 형식)를 설계해 **일관된 구조화 데이터**를 받기
+- 사실 확인 · 출처 · 편향 · 표현의 책임성 등 **AI 리터러시 관점의 윤리 기준**을 서비스에 반영
+- 날짜별 JSON 저장으로 **API 호출을 최소화**하고 과거 뉴스도 다시 볼 수 있게 하기
+- AI가 만든 코드를 그대로 쓰지 않고 **구조를 이해하고 선택해서 사용**하는 경험
+
+## 🛠 사용 기술
+
+| 구분     | 기술                                             |
+| ------ | ---------------------------------------------- |
+| 언어 / 웹 | `Python` · `Streamlit` · `HTML·CSS`            |
+| 데이터 수집 | `feedparser` (AI타임즈 RSS)                       |
+| 생성형 AI | `OpenAI API`                                   |
+| 데이터 저장 | `JSON` (날짜별 파일) · `python-dotenv` (API 키 관리)   |
+| 개발 도구  | ChatGPT · Gemini · Canva AI (기획 · 코드 · 디자인 시안) |
 
 ## ✨ 주요 기능
 
 1. **RSS 뉴스 수집** - AI타임즈 RSS에서 최신 기사 20개의 제목·링크·요약·발행일 수집
 2. **TOP 6 자동 선정** - 중요도·최신성·대중성·다양성·교육적 가치·신뢰성 기준으로 생성형 AI가 6개 선정
 3. **카드뉴스 생성** - 한 줄 요약, 선정 이유, 키워드, 카테고리, 윤리적 고려사항을 JSON으로 구조화
-4. **날짜별 저장 · 과거 뉴스 조회** - `data/YYYY-MM-DD.json`으로 저장하고 사이드바에서 날짜를 골라 다시 보기
+4. **날짜별 저장 · 과거 뉴스 조회** - `data/YYYY-MM-DD.json`으로 저장하고 사이드바에서 과거 날짜를 골라 다시 보기
 5. **카테고리별 이미지** - 11개 카테고리마다 이미지를 매칭해 카드에 표시
 6. **오늘의 AI·IT 단어** - 뉴스와 관련된 용어 1개를 쉬운 설명과 함께 제공
 7. **원문 링크 · 출처 표기** - 모든 카드에서 원문 기사로 이동해 사실 확인 가능
@@ -38,79 +55,63 @@ AI 뉴스는 매일 쏟아지지만, 여러 사이트를 직접 돌아다니며 
 [OUTPUT]  카드뉴스 TOP 6 / 오늘의 핵심 메시지 / 오늘의 단어 / 날짜별 과거 뉴스
 ```
 
-## 🤖 생성형 AI 활용 정리
+## ⭐ 주요 함수
 
-| 구현 영역       | 구현 내용                               | 활용한 생성형 AI                  | 결과물                    |
-| ----------- | ----------------------------------- | --------------------------- | ---------------------- |
-| 기획·설계       | 전체 제작 프로세스, 카테고리, 프롬프트 설계           | ChatGPT                     | 시스템 구조, 선정 기준          |
-| 데이터 수집      | RSS에서 제목·링크·요약·발행일 추출               | ChatGPT (코드 생성·오류 수정)       | 뉴스 원본 리스트              |
-| 뉴스 분석·윤리 검증 | TOP 6 선정, 요약, 카테고리 분류, 키워드, 윤리 고려사항 | OpenAI API (`gpt-5.4-mini`) | 카드뉴스용 JSON             |
-| 데이터 저장      | 날짜별 JSON 저장·불러오기                    | ChatGPT                     | `data/YYYY-MM-DD.json` |
-| 디자인         | 카드 레이아웃 시안, 카테고리별 이미지               | Gemini로 프롬프트 작성 → Canvas AI | HTML/CSS 시안, 이미지 11종   |
-| 웹앱 구현       | Streamlit 화면, 날짜 조회, 이미지 매칭, 디버깅    | ChatGPT                     | Streamlit 웹앱           |
+| 함수 | 파일 | 역할 |
+|---|---|---|
+| **`fetch_news_articles(max_count)`** | `lib/function_lib.py` | RSS에서 기사 제목·링크·요약·발행일을 리스트로 수집 |
+| **`get_top_n_news_data(news_list, top_n)`** | `lib/function_lib.py` | 프롬프트를 만들어 OpenAI API로 TOP N 뉴스(JSON) 생성 |
+| **`clean_json_text(response_text)`** | `lib/function_lib.py` | 코드블록·따옴표 등을 제거하고 순수 JSON만 추출 |
+| **`save_selected_news_json()`** / **`load_selected_news_json()`** | `lib/function_lib.py` | 날짜별 JSON 저장 · 불러오기 (파일이 없거나 깨지면 `None`) |
+| **`get_available_dates(DATA_DIR)`** | `lib/function_lib.py` | 저장된 날짜 목록 → 사이드바 날짜 선택 |
+| **`render_cards(news_list)`** / **`render_card(news)`** | `templates/templates_card_news.py` | 카드뉴스 HTML 생성 (순위·카테고리 배지, 이미지, 키워드, 윤리 박스, 링크) |
+| **`get_css()`** | `templates/templates_card_news.py` | CSS 전체를 문자열로 반환해 `<style>`로 삽입 |
 
-## 🛠 사용 기술
+## 💻 코드 스니펫
 
-`Python` · `Streamlit` · `feedparser` · `OpenAI API` · `python-dotenv` · `HTML·CSS` · `JSON`
+### 1. RSS 수집 — `fetch_news_articles()`
 
-## 📁 폴더 구조
+```python
+def fetch_news_articles(max_count=20):
+    RSS_URL = "https://www.aitimes.com/rss/allArticle.xml"
+    feed = feedparser.parse(RSS_URL)
 
-```text
-02_project_ai_article/
-├── .streamlit/
-│   └── config.toml              # 정적 파일(이미지) 제공 기능 켜기
-├── data/                        # 날짜별 TOP 6 뉴스 JSON (YYYY-MM-DD.json)
-├── static/img/                  # 카테고리별 이미지 (1.jpg ~ 11.jpg)
-├── lib/
-│   └── function_lib.py          # RSS 수집, AI 호출, JSON 정제·저장·로드
-├── templates/
-│   └── templates_card_news.py   # CSS·카드뉴스 HTML 렌더링 함수
-├── app.py                       # Streamlit 웹앱 시작 파일
-├── requirements.txt
-└── .env                         # API 키 (※ 공개 저장소에 올리지 않기)
+    news_list = []
+    for entry in feed.entries[:max_count]:
+        news_list.append({
+            "title": entry.title,
+            "link": entry.link,
+            "summary": entry.summary,
+            "published": entry.published,
+        })
+    return news_list
 ```
 
-## 🚀 실행 방법
+RSS는 제목·요약·링크·발행일이 구조화되어 있어 카드뉴스 데이터로 쓰기 좋았다.
 
-```bash
-# 1. 가상환경 생성 및 활성화
-conda create -n news_env python=3.11
-conda activate news_env
+### 2. TOP 6 선정 — `get_top_n_news_data()`
 
-# 2. 패키지 설치
-pip install -r requirements.txt
+ChatGPT에게 포함할 요소를 알려주고 받은 프롬프트 초안을 다듬어 사용했다. 수집한 뉴스 목록을 JSON으로 프롬프트에 넣어 한 번에 호출한다.
 
-# 3. 실행
-streamlit run app.py
+```python
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+prompt = f"""너는 AI 뉴스 큐레이션 전문가이자 AI 리터러시 교육자이다.
+... (페르소나 · 선정 기준 · 주의사항 · 카테고리 · 출력 JSON 형식)
+[입력 뉴스 목록]
+{json.dumps(news_list, ensure_ascii=False, indent=2)}"""
+
+response = client.responses.create(model="gpt-5.4-mini", input=prompt)
+return response.output_text
 ```
-
-프로젝트 폴더에 `.env` 파일을 만들고 API 키를 설정합니다. (키 이름은 `lib/function_lib.py` 기준)
-
-```env
-OPENAI_API_KEY=YOUR_OPENAI_API_KEY
-```
-
-> 오늘 날짜의 JSON이 `data/`에 없을 때만 API가 호출됩니다. 이미 있는 날짜는 API 없이 파일만 읽어 보여줍니다.
-
-## 🧠 핵심 구현 설명
-
-### 1. RSS 수집
-
-`feedparser`로 AI타임즈 RSS(`https://www.aitimes.com/rss/allArticle.xml`)를 읽어 최신 기사 `max_count`개의 `title`, `link`, `summary`, `published`를 리스트로 반환합니다. RSS는 제목·요약·링크·발행일이 구조화되어 있어 카드뉴스 데이터로 쓰기 좋았습니다.
-
-### 2. TOP 6 선정 프롬프트
-
-ChatGPT에게 포함할 요소(페르소나, 역할, 선정 기준, 주의사항, 카테고리, JSON 출력 형식)를 알려주고 프롬프트 초안을 받아 다듬어 사용했습니다.
 
 | 프롬프트 구성 | 내용 |
 |---|---|
 | 페르소나 | AI 뉴스 큐레이션 전문가 + AI 리터러시 교육자 |
 | 선정 기준 | 중요도 · 최신성 · 대중성 · 다양성 · 교육적 가치 · 신뢰성 |
-| 주의사항 | 목록에 없는 기사 생성 금지, 원문 추측 금지, 제목·링크는 입력값 그대로 사용, 순수 JSON만 출력 |
+| 주의사항 | 목록에 없는 기사 생성 금지, 원문 추측 금지, 제목·링크는 입력값 그대로, 순수 JSON만 출력 |
 | 카테고리 | AI 기술 · AI 서비스 · 기업·산업 · 정책·규제 · 교육·학습 · 연구·논문 · 보안·개인정보 · 윤리·사회 영향 · 콘텐츠·미디어 · 하드웨어·인프라 · 기타·종합 (11개) |
 | 윤리 기준 | 정보 정확성, 출처와 저작권, 선정 편향 완화, 표현의 책임성, 오늘의 단어 기준 |
-
-토큰 사용량은 입력 약 6,000 / 출력 약 4,096 토큰으로 예상했고, 한 번 호출 비용이 약 3원 수준(ChatGPT 산출 기준)이라 과제 진행에는 부담이 없었습니다. 최종 코드는 OpenAI `gpt-5.4-mini`를 사용합니다.
 
 **출력 JSON 구조**
 
@@ -140,48 +141,107 @@ ChatGPT에게 포함할 요소(페르소나, 역할, 선정 기준, 주의사항
 
 ### 3. 응답 JSON 정제 — `clean_json_text()`
 
-AI 응답에 ` ```json ` 코드블록, 앞뒤 따옴표, 이스케이프 문자가 섞여 와서 JSON 파싱이 실패했습니다. 코드블록 제거 후 첫 `{`부터 마지막 `}`까지만 잘라내 저장하는 함수를 추가해 해결했습니다.
+AI 응답에 ` ```json ` 코드블록, 앞뒤 따옴표, 이스케이프 문자가 섞여 와서 파싱이 실패했다. 코드블록을 제거하고 **첫 `{`부터 마지막 `}`까지만** 잘라 저장한다.
 
-### 4. 카드뉴스 렌더링 — `templates_card_news.py`
+```python
+def clean_json_text(response_text: str) -> str:
+    text = response_text.strip()
 
-Canvas AI가 만든 HTML 시안은 클래스명이 길고 복잡해, ChatGPT로 클래스명을 읽기 쉽게 정리하고 CSS로 분리했습니다. 카드는 `render_cards()`가 `render_card()`를 반복 호출해 만들고, `app.py`가 헤더(`render_header`)·카드·푸터(`render_html_footer`)를 순서대로 화면에 출력합니다.
+    # 응답 전체가 문자열로 감싸진 경우 한 번 풀어줌
+    try:
+        decoded = json.loads(text)
+        if isinstance(decoded, str):
+            text = decoded.strip()
+    except json.JSONDecodeError:
+        pass
 
-- 카테고리 이름의 순서를 번호로 바꿔 `{번호}.jpg` 이미지를 카드에 매칭합니다.
-- 각 카드에 순위·카테고리 배지, 요약, 선정 이유, 키워드 태그, 윤리 고려사항 박스, 출처·발행일, 원문 링크 버튼이 들어갑니다.
+    # 마크다운 코드블록 제거
+    text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"^```\s*", "", text)
+    text = re.sub(r"\s*```$", "", text)
 
-## 🐞 오류 해결 기록
+    # JSON 시작과 끝만 추출
+    start, end = text.find("{"), text.rfind("}")
+    if start == -1 or end == -1:
+        raise ValueError("JSON 객체를 찾을 수 없습니다.")
+    return text[start:end + 1]
+```
 
-| 문제 | 원인 | 해결 |
-|---|---|---|
-| AI 응답이 JSON으로 파싱되지 않음 | 코드블록·따옴표·이스케이프 문자가 섞여 응답 | `clean_json_text()`로 JSON 부분만 추출 |
-| `st.html()`에서 CSS가 적용되지 않음 | `st.html`은 HTML 조각 삽입용이라 외부 `<link>` CSS 로딩이 기대대로 동작하지 않음 | `get_css()`가 CSS 전체를 문자열로 반환해 `<style>`로 직접 삽입 |
-| `/img/9.jpg` 이미지가 보이지 않음 | Streamlit은 프로젝트 폴더를 자동으로 웹에 공개하지 않음 | `.streamlit/config.toml`에 `enableStaticServing = true` 설정 후 `static/` 폴더 사용 |
-| 저장된 JSON을 읽을 때 `JSONDecodeError`로 앱이 멈춤 | AI가 큰따옴표가 아닌 작은따옴표 형태(`{'키': '값'}`)로 응답했고, 형식 검사 없이 파일로 저장됨. 이미 파일이 있어 재생성도 되지 않음 | 해당 날짜 파일을 삭제해 다시 생성. 파일이 없거나 JSON이 깨지면 `load_selected_news_json()`이 `None`을 반환하고, `app.py`가 `st.error()` 후 `st.stop()` |
-| 오늘 뉴스 생성(RSS·API 호출)이 실패하면 앱이 중단됨 | API 키·네트워크 오류, 응답 형식 오류 등 | 생성 블록을 `try/except`로 감싸 경고를 보여주고, 저장된 날짜의 뉴스를 계속 표시 |
-| 카드뉴스가 본문이 아닌 사이드바에 표시됨 | `st.columns()` 이후 코드가 `with st.sidebar:` 안에 들여쓰기되어 있었음 | 해당 코드를 사이드바 블록 밖으로 내어쓰기 |
-| 함수 안에 넣은 `print()`가 실행되지 않음 | Streamlit이 이미 불러온 모듈(`lib/function_lib.py`) 변경을 다시 읽지 않음 | `streamlit run`을 종료 후 재시작 |
+### 4. 접속 시 1회 생성 · 실패 대비 — `app.py`
+
+오늘 날짜의 JSON이 없을 때만 API를 호출하고, 실패해도 앱이 멈추지 않고 저장된 날짜의 뉴스를 보여준다.
+
+```python
+if search_today not in available_date:
+    try:
+        news_list = lb.fetch_news_articles(max_count=20)          # RSS 수집
+        today_top_news_json = lb.get_top_n_news_data(news_list)   # AI로 TOP 6 선정
+        lb.save_selected_news_json(today_top_news_json, f"data/{search_today}.json")
+        available_date = lb.get_available_dates(DIR_PATH)
+    except Exception as e:
+        st.warning(f"오늘({search_today}) 뉴스 생성에 실패했습니다. 저장된 날짜의 뉴스를 보여드립니다.")
+
+news_list = lb.load_selected_news_json(f"data/{search_today}.json")
+if not news_list:
+    st.error(f"{search_today} 뉴스 데이터를 불러오지 못했습니다.")
+    st.stop()
+```
+
+### 5. 카드뉴스 렌더링 — `render_cards()`
+
+Canvas AI가 만든 HTML 시안의 클래스명을 정리하고 CSS로 분리했다. `app.py`가 헤더 · 카드 · 푸터를 순서대로 출력하며, 카테고리 순서를 번호로 바꿔 `{번호}.jpg` 이미지를 카드에 매칭한다.
+
+```python
+title_html = tp.render_header(today_info)   # 오늘의 핵심 메시지 · 선정 기준
+st.html(title_html)
+
+card_html = tp.render_cards(news_list)      # render_card()를 반복 호출해 카드 6개 생성
+st.html(card_html)
+```
+
+## 📁 폴더 구조
+
+```text
+02_project_ai_article/
+├── .streamlit/
+│   └── config.toml              # 정적 파일(이미지) 제공 기능 켜기
+├── data/                        # 날짜별 TOP 6 뉴스 JSON (YYYY-MM-DD.json)
+├── static/img/                  # 카테고리별 이미지 (1.jpg ~ 11.jpg)
+├── lib/
+│   └── function_lib.py          # RSS 수집, AI 호출, JSON 정제·저장·로드
+├── templates/
+│   └── templates_card_news.py   # CSS·카드뉴스 HTML 렌더링 함수
+├── app.py                       # Streamlit 웹앱 시작 파일
+├── requirements.txt
+└── .env                         # API 키 (※ 공개 저장소에 올리지 않기)
+```
+
+## 🚀 실행 방법
+
+```bash
+conda create -n news_env python=3.11
+conda activate news_env
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+프로젝트 폴더에 `.env` 파일을 만들고 API 키를 설정한다.
+
+```env
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+```
+
+> 오늘 날짜의 JSON이 `data/`에 없을 때만 API가 호출된다. 이미 있는 날짜는 파일만 읽어 보여준다.
 
 ## ⚖️ 사실 검증과 윤리적 고려
 
-- **정확성**: 카드마다 원문 링크를 제공해 사용자가 직접 확인할 수 있게 했고, 프롬프트에서 입력된 뉴스 외 내용을 추측하지 못하도록 제한했습니다.
-- **저작권·출처**: 원문을 그대로 복사하지 않고 짧게 재구성하며, 출처와 URL을 반드시 표기합니다.
-- **편향성**: 특정 기업·국가·기술에 치우치지 않도록 선정 기준에 다양성과 긍정·우려 뉴스의 균형을 포함했습니다.
-- **표현의 책임성**: 공포감 조성, 낚시성 제목, 단정적인 전망을 피하도록 지시했습니다.
+- **정확성**: 카드마다 원문 링크를 제공하고, 프롬프트에서 입력된 뉴스 외 내용을 추측하지 못하도록 제한
+- **저작권·출처**: 원문을 그대로 복사하지 않고 짧게 재구성하며, 출처와 URL을 반드시 표기
+- **편향성**: 선정 기준에 다양성과 긍정·우려 뉴스의 균형을 포함
+- **표현의 책임성**: 공포감 조성, 낚시성 제목, 단정적인 전망을 피하도록 지시
 
-## 💭 성찰
+## 💭 성찰 · 🔭 향후 계획
 
-- 흐름은 단순해 보였지만 각 기능을 연결하자 고려할 점이 많았고, 특히 **Streamlit에서 서버 이미지 출력**이 가장 마지막에 해결되었습니다.
-- ChatGPT는 초안을 빠르게 주지만 코드가 길어질수록 프로젝트와 어긋나거나 불필요한 코드가 늘었습니다. **AI 코드를 그대로 쓰지 않고 구조를 이해한 뒤 필요한 부분만 선택**해야 한다는 점을 배웠습니다.
-- ChatGPT와 Canvas AI를 함께 쓰면 혼자서도 기획·개발·디자인을 어느 정도 수행할 수 있어 1인 개발자에게 유용한 도구라고 느꼈습니다.
-- 저작권, 개인정보, 코드 안정성은 AI에 맡기지 않고 **사용자가 직접 확인**해야 합니다.
-
-## 🔭 향후 계획
-
-- 뉴스 검색 · 카테고리 검색 · 키워드 검색
-- 하루 하나씩 쌓이는 AI·IT 지식 저장 및 보기
-- 코드 구조 정리와 예외 처리 보완
-  - 저장 전에 AI 응답을 `json.loads()`로 검증하고, 필수 키(`top_news`, `today_word` 등) 확인
-  - OpenAI JSON 모드를 적용해 항상 올바른 JSON으로 응답받기
-  - RSS 수집 결과가 비어 있으면 API를 호출하지 않기
-  - 생성 실패 시 같은 접속에서 API를 반복 호출하지 않도록 `st.session_state` 사용
-- 스케줄러를 이용한 매일 자동 수집
+- 흐름은 단순해 보였지만 연결하자 고려할 점이 많았고, 특히 **Streamlit의 서버 이미지 출력**이 가장 마지막에 해결되었다.
+- AI는 초안을 빠르게 주지만 코드가 길어질수록 불필요한 코드가 늘었다. **구조를 이해한 뒤 필요한 부분만 선택**해야 하고, 저작권·개인정보·코드 안정성은 직접 확인해야 했다.
+- 향후: 뉴스 · 카테고리 · 키워드 검색 / 매일 가져오는 지식 저장 및 검색  /  스케줄러를 이용한 자동 수집
