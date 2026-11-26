@@ -209,6 +209,7 @@ no.81 7m 5st
 ├── arduino_bus_station/
 │   └── arduino_bus_station.ino       # 아두이노 스케치 (시리얼 수신 → JSON 파싱 → LCD 출력)
 └── app.py                            # Streamlit 웹앱 시작 파일
+└── requirements.txt
 ```
 
 ## 🚀 실행 방법

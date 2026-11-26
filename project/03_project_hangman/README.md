@@ -148,7 +148,7 @@ def submit_letter(letter):
 
 ### 5. 캔버스 초기화 — `canvas_key`
 
-캔버스의 `key`를 바꾸면 새 캔버스가 만들어져 이전 글씨가 지워진다. 제출 · 재시작 때마다 번호를 올린다.
+제출 · 재시작 할 때마다 캔버스의 이전 글씨를 지우기 위해 st.session_state.canvas_key 번호를 바꿔서 새 캔버스를 만든다.
 
 ```python
 canvas_result = st_canvas(
@@ -179,7 +179,7 @@ st.rerun()
 03_project_hangman/
 ├── lib/
 │   ├── conf.py                         # 문제·모델 불러오기, 세션 관리, 이미지 전처리 함수
-│   ├── hangman_words.json              # 단어 데이터 (난이도 1: 중학생 50개, 난이도 2: 고등학생 50개)
+│   ├── hangman_words.json              # 단어 데이터
 │   └── emnist_balanced_cnn_0811.keras  # 학습한 손글씨 인식 모델
 ├── static/img/                         # 행맨 단계별 이미지 (img_{난이도}{오답횟수}.png)
 ├── emnist.ipynb                        # 모델 학습 노트북
