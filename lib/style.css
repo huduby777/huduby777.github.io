@@ -60,26 +60,28 @@ img { max-width: 100%; }
 .nav-links a:hover::after, .nav-links a.is-active::after { transform: scaleX(1); }
 
 /* ---------- 3. 공통: 섹션 · 제목 · 카드 ---------- */
-.section { padding: clamp(50px, 7vw, 80px) 0; }
+.section { padding: clamp(44px, 5vw, 56px) 0; }
+/* 섹션 구성: 제목 묶음(.sec-head) + 내용(.sec-body). 넓은 화면에서는 좌우 2단(아래 '2단 구성' 참고) */
+.sec-body { min-width: 0; margin-top: 32px; }
 .section-tint { background: var(--bg2); }
 
 /* 작은 라벨 (섹션 번호 · 첫 화면 소개문구) */
 .section-label, .eyebrow { font-size: .8rem; font-weight: 700; color: var(--brand-400); }
-.section-label { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; letter-spacing: .09em; }
+.section-label { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; letter-spacing: .09em; }
 .eyebrow { margin: 0 0 28px; letter-spacing: .14em; }
 
 /* 제목(h2)과 제목 밑줄: 밑줄은 제목 글자 폭만큼만, 화면에 들어올 때마다 왼쪽에서 오른쪽으로 그려짐 */
 h2 {
   position: relative; width: fit-content; max-width: 100%;
-  padding-bottom: 18px;                                   /* 글자와 밑줄 사이 간격 */
-  font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.22; letter-spacing: -.045em; color: var(--ink);
+  padding-bottom: 14px;                                   /* 글자와 밑줄 사이 간격 */
+  font-size: clamp(1.7rem, 3.2vw, 2.05rem); line-height: 1.32; letter-spacing: -.045em; color: var(--ink);
 }
 h2::after {
   content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 3px; border-radius: 3px;
   background: var(--brand); transform-origin: left center; transition: transform 1s var(--ease);
 }
 html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
-.section-lead { margin: 14px 0 0; max-width: 64ch; color: var(--ink3); font-size: 1.02rem; }  /* 밑줄과 설명 사이 간격 */
+.section-lead { margin: 18px 0 0; max-width: 64ch; color: var(--ink3); font-size: .94rem; }  /* 밑줄과 설명 사이 간격 */
 
 /* 카드 공통 (강의 철학·자격증은 카드 모양이 아니라서 제외) */
 .skill-card, .background, .career-year-group, .project-preview {
@@ -153,50 +155,50 @@ html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
 @keyframes floatA { from { transform: translateY(0); } to { transform: translateY(-5px); } }
 @keyframes floatB { from { transform: translateY(0); } to { transform: translateY(5px); } }
 
-/* ---------- 6. 강의 철학 (단계 흐름: 동그라미 + 연결선) ---------- */
-.philosophy-heading { margin-bottom: 56px; }
-.philosophy-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 28px; }
-.soft-card { position: relative; display: flex; flex-direction: column; align-items: center; padding: 8px 6px 0; text-align: center; }
-/* 동그라미: 원은 ::before 로 그리고(색 필터 영향 없음), 아이콘은 그 위에 올림 */
-.soft-card::before {
-  content: ""; position: absolute; top: 8px; left: 50%; width: 148px; height: 148px; margin-left: -74px;
-  background: #fff; border: 2px solid var(--brand); border-radius: 50%;
-  box-shadow: 0 0 0 9px var(--brand-50); transition: transform .35s var(--ease);
+/* ---------- 6. 강의 철학 (순환 구조: 가운데 화살표 + 네 귀퉁이 카드) ---------- */
+.philosophy-cycle {
+  position: relative; display: grid; grid-template-columns: 424px 442px; grid-auto-rows: minmax(126px, auto);
+  gap: 12px; justify-content: center;
+  zoom: var(--cycle-zoom, 1);   /* 오른쪽 영역 폭에 맞춘 확대·축소 비율 (script.js에서 계산) */
 }
-.soft-card .philosophy-icon {
-  position: relative; z-index: 1; width: 148px; height: 148px; padding: 4px; object-fit: contain; border-radius: 50%;
-  transition: transform .35s var(--ease);
+.soft-card {
+  display: flex; align-items: center; gap: 12px; padding: 0 0 0 18px;
+  background: var(--card-bg); border: 1px solid var(--card-line); border-radius: 63px 20px 20px 63px;
 }
-.soft-card:hover::before, .soft-card:hover .philosophy-icon { transform: scale(1.06); }
-/* 번호 배지: 원 오른쪽 위, 1→4로 갈수록 색이 진해짐 */
-.soft-card .card-number {
-  position: absolute; top: 0; left: calc(50% + 46px); min-width: 34px; padding: 2px 10px;
-  font-size: .78rem; font-weight: 700; letter-spacing: .04em; color: #fff;
-  background: var(--brand-400); border: 2px solid #fff; border-radius: 999px;
-}
-.soft-card:nth-child(2) .card-number { background: color-mix(in srgb, var(--brand-400) 50%, var(--brand)); }
-.soft-card:nth-child(3) .card-number { background: var(--brand); }
-.soft-card:nth-child(4) .card-number { background: var(--brand-700); }
-/* 원과 원 사이 연결선 */
-.soft-card:not(:last-child)::after {
-  content: ""; position: absolute; top: 82px; left: calc(50% + 74px + 20px); width: calc(100% + 28px - 148px - 40px);
-  border-top: 3px dashed var(--brand-400);
-}
-.soft-card h3, .skill-card h3 { font-size: 1.28rem; letter-spacing: -.04em; }
-.soft-card h3 { margin: 34px 0 10px; line-height: 1.35; }
-.soft-card p, .skill-desc-v2 { margin: 0; color: var(--ink3); font-size: .95rem; }
-.soft-card p { max-width: 24ch; }
+/* 카드별 색: 배경 / 테두리 / 번호 배지 */
+.soft-card:nth-child(1) { grid-area: 1 / 1; --card-bg: #EFF3F9; --card-line: #DCE4F0; --badge: #35588F; }
+.soft-card:nth-child(2) { grid-area: 1 / 2; --card-bg: #EDF4F5; --card-line: #D8E7EA; --badge: #326B76; }
+.soft-card:nth-child(3) { grid-area: 2 / 2; --card-bg: #F1F1F8; --card-line: #E0DFEE; --badge: #5A5890; }
+.soft-card:nth-child(4) { grid-area: 2 / 1; --card-bg: #F0F3F7; --card-line: #DEE4EC; --badge: #4A607C; }
+/* 오른쪽 카드(02·03): 아이콘을 바깥쪽(오른쪽)에 배치 */
+.soft-card:nth-child(2), .soft-card:nth-child(3) { flex-direction: row-reverse; padding: 0 18px 0 0; border-radius: 20px 63px 63px 20px; }
+.soft-card .philosophy-icon { flex: none; width: 76px; height: 76px; object-fit: contain; transition: transform .35s var(--ease); }
+.soft-card:hover .philosophy-icon { transform: scale(1.08); }
+.card-text { flex: none; width: 214px; }
+.soft-card h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; font-size: 1.18rem; line-height: 1.4; letter-spacing: -.045em; white-space: nowrap; }
+.soft-card .card-number { padding: 1px 9px; font-size: .8rem; font-weight: 700; letter-spacing: 0; color: #fff; background: var(--badge); border-radius: 999px; }
+.soft-card p { margin: 0; color: #4B5261; font-size: .9rem; line-height: 1.7; white-space: nowrap; }
+/* 가운데 순환 화살표: left 값 = 왼쪽 카드 폭(424) + 카드 간격의 절반(6) */
+.cycle-ring { position: absolute; left: calc(50% - 439px + 430px); top: 50%; width: 248px; height: 248px; transform: translate(-50%, -50%); pointer-events: none; }
+.cycle-ring text { fill: var(--ink); font-size: 30px; font-weight: 800; text-anchor: middle; }
+.cycle-ring .cycle-title { font-size: 26px; }
+.cycle-bulb { fill: none; stroke: var(--brand); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.skill-card h3 { font-size: 1.08rem; letter-spacing: -.04em; }
+.skill-desc-v2 { margin: 0; color: var(--ink3); font-size: .84rem; line-height: 1.65; }
 
 /* ---------- 7. 강의 분야 ---------- */
-.skill-grid-4col { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin-top: 56px; }
-.skill-card { display: flex; flex-direction: column; gap: 18px; padding: 30px 28px 26px; transition: border-color .25s, transform .35s var(--ease); }
+.skill-grid-4col { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.skill-card { display: flex; flex-direction: column; gap: 10px; padding: 18px 16px 16px; border-radius: 18px; transition: border-color .25s, transform .35s var(--ease); }
 .skill-card:hover { border-color: var(--brand-400); transform: translateY(-4px); }
 .card-icon-wrapper { display: flex; align-items: center; justify-content: space-between; }
-.icon-circle img { display: block; width: 124px; height: 124px; margin: -14px 0 -12px -14px; object-fit: contain; }  /* 강의 분야 아이콘 크기 */
+.icon-circle img { display: block; width: 76px; height: 76px; margin: -8px 0 -6px -8px; object-fit: contain; }  /* 강의 분야 아이콘 크기 */
 .skill-card-number { padding: 2px 12px; font-size: .78rem; letter-spacing: .04em; }
-.skill-card h3 { margin-bottom: 10px; }
+.skill-card h3 { margin-bottom: 6px; }
 .skill-desc-v2 strong { color: var(--ink); }
-.card-footer { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
+.card-footer { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.skill-card .card-tags { gap: 5px; }
+.skill-card .card-tags span { padding: 3px 8px; font-size: .7rem; }
 .card-tools-label { margin: 0 0 10px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; color: var(--brand-400); }
 /* 도구 이름 알약 (강의 분야 · 프로젝트 공통) */
 .card-tags, .pill-list { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -206,17 +208,20 @@ html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
 }
 
 /* ---------- 8. 프로젝트 ---------- */
-.project-split { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 32px; margin-top: 56px; align-items: start; }
-.project-list { display: flex; flex-direction: column; gap: 8px; }
+.project-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+/* 위쪽 가로 메뉴: 모서리를 살짝 둥글린 사각형. 마우스를 올리거나 선택하면 자격증 목록과 같은 연한 배경 + 아래 파란 선 */
+.project-list { display: flex; gap: 8px; }
 .project-tab {
-  display: flex; align-items: baseline; gap: 14px; width: 100%; padding: 18px 20px; text-align: left;
-  font-size: 1.02rem; font-weight: 600; color: var(--ink3);
-  background: transparent; border: 1px solid transparent; border-radius: 16px;
-  transition: background .2s, color .2s, border-color .2s;
+  position: relative; overflow: hidden; display: flex; flex: 1; justify-content: center; align-items: baseline; gap: 10px;
+  padding: 12px 10px 14px; font-size: .96rem; font-weight: 600; color: var(--ink3);
+  background: transparent; border: 1px solid var(--line); border-radius: 8px;
+  transition: background-color .25s, color .25s, border-color .25s;
 }
+.project-tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--brand); transform: scaleX(0); transition: transform .3s var(--ease); }
 .project-tab small { font-size: .78rem; font-weight: 700; color: var(--brand-400); }
-.project-tab:hover { color: var(--ink); background: var(--bg2); }
+.project-tab:hover { color: var(--ink); background: var(--brand-50); }
 .project-tab.is-active { color: var(--brand); background: var(--brand-50); border-color: var(--brand-100); font-weight: 700; }
+.project-tab:hover::after, .project-tab.is-active::after { transform: scaleX(1); }
 .project-preview { overflow: hidden; }
 .project-pane {
   display: grid; grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr);
@@ -229,7 +234,7 @@ html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
 .pill-list { grid-area: pills; }
 /* 오른쪽 이미지: 박스 폭을 꽉 채우고 높이는 모든 프로젝트가 같게 고정 */
 .project-shot {
-  grid-area: shot; width: 100%; height: 300px; object-fit: cover; object-position: top center;  /* 높이: 숫자를 줄이면 박스도 낮아짐 */
+  grid-area: shot; width: 100%; height: 290px; object-fit: cover; object-position: top center;  /* 높이: 숫자를 줄이면 박스도 낮아짐 */
   background: var(--brand-50); border: 1px solid var(--brand-100); border-radius: 16px;
 }
 .project-more {
@@ -239,19 +244,19 @@ html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
 .project-more:hover { background: var(--brand-700); }
 
 /* ---------- 9. 강의 경력 ---------- */
-.career-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 48px; }
-.career-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 35%; border-radius: var(--r); }
+.career-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.career-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 35%; border-radius: 18px; }
 .career-photos + .career-timeline { margin-top: 14px; }
 .career-timeline { margin-top: 48px; display: grid; gap: 14px; }
-.career-year-group { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 22px 30px; }
-.career-year { font-size: 2.2rem; font-weight: 300; line-height: 1.1; letter-spacing: -.05em; color: var(--brand); }
+.career-year-group { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; padding: 20px 24px; }
+.career-year { font-size: 1.9rem; font-weight: 300; line-height: 1.1; letter-spacing: -.05em; color: var(--brand); }
 .career-events { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
-.career-event { position: relative; display: grid; grid-template-columns: 138px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.career-event { position: relative; display: grid; grid-template-columns: 126px minmax(0, 1fr); gap: 12px; align-items: baseline; }
 .career-event::before { content: ""; position: absolute; left: -31px; top: .6em; width: 9px; height: 9px; border-radius: 50%; background: #fff; border: 2px solid var(--brand-400); }
 .career-date { font-size: .84rem; font-weight: 600; color: var(--ink3); font-variant-numeric: tabular-nums; }
 /* 학교명 오른쪽에 수업 내용이 한 줄로 이어짐 */
 .career-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
-.career-school { flex: 0 0 11em; font-weight: 700; letter-spacing: -.03em; }
+.career-school { flex: 0 0 9.5em; font-weight: 700; letter-spacing: -.03em; }
 .career-role { padding: 1px 11px; font-size: .74rem; }
 .career-meta p { flex: 1 1 16rem; margin: 0; color: var(--ink3); font-size: .94rem; }
 .background { display: grid; gap: 4px; margin-top: 14px; padding: 24px 30px; background: var(--brand-50); border-color: var(--brand-100); box-shadow: none; }
@@ -260,7 +265,7 @@ html.fx h2:not(.drawn)::after { transform: scaleX(0); transition: none; }
 .background p { margin: 0; color: var(--ink2); }
 
 /* ---------- 10. 자격증 (3행 2열 목록) ---------- */
-.cert-grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; margin-top: 36px; }
+.cert-grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
 .cert-grid::before { content: ""; position: absolute; top: 12px; bottom: 12px; left: 50%; width: 1px; background: var(--line); }  /* 가운데 세로선 */
 .cert-card {
   position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 4px 20px;
@@ -317,10 +322,21 @@ html.fx .rv {
 html.fx .rv.is-in { opacity: 1; transform: none; }
 
 /* ---------- 13. 반응형 ---------- */
+/* 2단 구성: 왼쪽 제목(스크롤해도 따라옴) + 오른쪽 내용 */
+@media (min-width: 1200px) {
+  .section > .wrap { display: grid; grid-template-columns: 280px minmax(0, 1fr); column-gap: 44px; align-items: start; }
+  .sec-head { position: sticky; top: calc(var(--nav-h) + 24px); }
+  .sec-head h2 { font-size: 2.05rem; }
+  .sec-head .section-lead br { display: none; }
+  .sec-body { margin-top: 0; padding-top: 4px; }
+}
+@media (max-width: 1199px) {
+  .sec-head h2 br { display: none; }
+}
+@media (max-width: 1319px) {
+  .skill-grid-4col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 1200px) {
-  .philosophy-grid, .skill-grid-4col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .philosophy-grid { gap: 44px 28px; }
-  .soft-card:not(:last-child)::after { display: none; }
   .logo span { display: none; }
 }
 @media (max-width: 900px) {
@@ -337,14 +353,28 @@ html.fx .rv.is-in { opacity: 1; transform: none; }
   .number-grid > div:nth-child(n+3) { border-top: 1px solid var(--line); }
   .number-grid strong { font-size: 2rem; }
   .project-split { grid-template-columns: 1fr; gap: 20px; }
-  .project-list { flex-direction: row; overflow-x: auto; gap: 6px; }
-  .project-tab { width: auto; white-space: nowrap; padding: 12px 16px; }
+  .project-list { overflow-x: auto; gap: 6px; }
+  .project-tab { flex: 1 0 auto; white-space: nowrap; padding: 12px 16px 14px; }
   .project-pane { grid-template-columns: 1fr; grid-template-areas: "top" "title" "sum" "shot" "pills" "more"; padding: 22px 20px 26px; }
   .project-shot { margin-bottom: 18px; }
   .career-year-group { grid-template-columns: 1fr; gap: 10px; padding: 20px; }
   .career-event { grid-template-columns: 1fr; gap: 2px; }
   .career-school { flex-basis: auto; }
   .career-meta p { flex-basis: 100%; }
+}
+/* 강의 철학: 좁은 화면에서는 화살표를 위에 두고 카드를 01→04 순서로 세로 배치 */
+@media (max-width: 980px) {
+  .philosophy-cycle { grid-template-columns: minmax(0, 520px); }
+  .philosophy-cycle .soft-card { grid-area: auto; flex-direction: row; gap: 16px; padding: 18px 20px; border-radius: 24px; }
+  .card-text { flex: 1; width: auto; min-width: 0; }
+  .soft-card p { white-space: normal; }
+  .cycle-ring { position: static; order: -1; justify-self: center; width: 220px; height: 220px; margin-bottom: 8px; transform: none; }
+}
+@media (max-width: 600px) {
+  .philosophy-cycle .soft-card { gap: 12px; padding: 16px; }
+  .soft-card .philosophy-icon { width: 60px; height: 60px; }
+  .soft-card h3 { font-size: 1.05rem; white-space: normal; }
+  .soft-card p br { display: none; }
 }
 @media (max-width: 700px) {
   .detail-row { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
@@ -358,7 +388,7 @@ html.fx .rv.is-in { opacity: 1; transform: none; }
   .cert-meta div:nth-child(1) dd { font-size: .9rem; }
 }
 @media (max-width: 600px) {
-  .philosophy-grid, .skill-grid-4col { grid-template-columns: 1fr; }
+  .skill-grid-4col { grid-template-columns: 1fr; }
   .career-photos { grid-template-columns: 1fr; }
   .career-photos img { aspect-ratio: 16 / 10; }
 }
