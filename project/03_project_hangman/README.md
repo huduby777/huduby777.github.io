@@ -1,6 +1,6 @@
 # ✍️ AI 손글씨 행맨 - 손으로 쓴 영어 단어 게임
 
-> 캔버스에 알파벳을 손으로 쓰면 AI가 글자를 인식하고, 그 글자로 영어 단어를 맞히는 행맨 게임이다.
+> Streamlit 캔버스에 알파벳을 쓰면 AI가 글자를 인식하고, 그 글자로 영어 단어를 맞히는 행맨 게임이다.
 
 ![AI 손글씨 행맨 화면](../../img/hang_img.png)
 
@@ -51,7 +51,9 @@
 [OUTPUT]  단어 진행 상황 / 틀린 횟수 / 행맨 이미지 / 성공·실패 메시지
 ```
 
-## ⭐ 주요 함수
+## ⭐ 주요 함수 
+
+* 중요한 함수들은 생성형 AI의 도움을 받아서 작성하였다.
 
 | 함수 | 파일 | 역할 |
 |---|---|---|
@@ -84,7 +86,9 @@ cmin, cmax = np.where(cols)[0][[0, -1]]
 cropped = binary[rmin:rmax + 1, cmin:cmax + 1]
 
 # 4. 정사각형으로 패딩 (여백 20%, EMNIST 특유의 여백 재현)
-size = max(cropped.shape); pad = int(size * 0.2); size += pad * 2
+size = max(cropped.shape)
+pad = int(size * 0.2)
+size += pad * 2
 
 # 5. 28x28 리사이즈 → 0~1 범위
 resized = Image.fromarray(square).resize((28, 28), Image.LANCZOS)
