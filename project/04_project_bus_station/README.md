@@ -36,12 +36,11 @@
 
 ## ✨ 주요 기능
 
-1. **실시간 도착 정보** - TAGO API에서 30초마다 조회해 노선별 도착 예정 시간과 차량 유형을 표시
+1. **실시간 도착 정보** - TAGO API 데이터를 30초마다 조회해 노선별 도착 예정 시간과 차량 유형을 표시
 2. **도착 임박 안내** - 도착까지 1분 이하로 남은 버스를 별도 영역에 강조
 3. **큰 글자 모드** - 버튼으로 글자 크기와 화면 배치를 바꿔 정보를 크게 표시
 4. **저상버스 구분** - 차량 유형(저상버스 · 일반버스 · 확인 불가)을 색상과 텍스트로 구분
 5. **아두이노 LCD 출력** - 가장 먼저 도착하는 버스 2대를 JSON으로 전송해 LCD 두 줄에 표시
-6. **오류 안내** - 아두이노 연결 실패, API 요청 오류, 버스 정보 없음 상황을 화면에 안내
 
 ## 🔄 동작 흐름 (IPO)
 
@@ -52,8 +51,8 @@
    │      ② 도착 시간 숫자 변환, 값이 없는 행 제거
    │      ③ 같은 노선의 여러 버스 중 가장 먼저 도착하는 차량만 선택, 도착 시간 순 정렬
    │      ④ 웹페이지: 노선 · 차량 유형 · 도착 예정(분) 카드 표시 / 1분 이하는 '곧 도착' 표시
-   │      ⑤ 상위 2대(노선번호, 도착 시간, 남은 정류장 수)를 JSON으로 만들어 USB 시리얼로 전송
-   │      ⑥ 아두이노: 줄바꿈까지 수신 → JSON 파싱 → 초를 분으로 올림 → LCD 출력
+   │      ⑤ 상위 2대(노선번호, 도착 시간, 남은 정류장 수)를 JSON으로 만들어 USB 시리얼로 아두이노로 전송
+   │      ⑥ 아두이노: Serial 통신으로 발송되는 데이터를 JSON 파싱해서 LCD 출력
    │
 [OUTPUT]  웹페이지 도착 정보 / LCD 2줄 안내
 ```
@@ -129,7 +128,7 @@ Streamlit은 화면이 다시 실행되므로 `@st.cache_resource`로 연결을 
 @st.cache_resource
 def connect_arduino():
     connection = serial.Serial(port="COM3", baudrate=9600, timeout=1, write_timeout=1)
-    time.sleep(2)                       # 보드가 재시작되는 시간
+    time.sleep(2)
     connection.reset_input_buffer()
     return connection, Lock()
 
@@ -216,19 +215,21 @@ no.81 7m 5st
 
 ### 1. 아두이노
 
-1. Arduino IDE 라이브러리 관리자에서 **ArduinoJson**과 **LiquidCrystal I2C**를 설치한다.
-2. LCD를 보드에 연결한다. I2C 주소는 스케치의 `LiquidCrystal_I2C(0x27,16,2)`와 같아야 한다.
-3. 보드를 선택하고 `arduino_bus_station.ino`를 업로드한다.
-4. **시리얼 모니터는 닫아 둔다.** 열려 있으면 Streamlit이 같은 포트를 열 수 없다.
+1. Arduino IDE의 **보드 매니저**에서 보드 패키지 **Arduino UNO R4 Boards**를 설치한다.
+2. Arduino IDE 라이브러리 관리자에서 **ArduinoJson**과 **LiquidCrystal I2C**를 설치한다.
+3. LCD를 보드에 연결한다. I2C 주소는 스케치의 `LiquidCrystal_I2C(0x27,16,2)`와 같아야 한다.
+4. 보드를 USB로 PC에 연결하고, **도구 → 보드**에서 `Arduino UNO R4 WiFi`를, **도구 → 포트**에서 보드가 연결된 COM 포트를 선택한다.
+5. `arduino_bus_station.ino`를 업로드한다.
+6. **시리얼 모니터는 닫아 둔다.** 열려 있으면 Streamlit이 포트를 열 수 없다.
+
+> 🔌 **COM 포트 안내**
+> `app.py`의 `connect_arduino()`에는 포트가 `COM3`으로 지정되어 있다. COM 포트 번호는 PC마다 다를 수 있으므로, Arduino IDE의 **도구 → 포트** 또는 Windows **장치 관리자 → 포트(COM & LPT)** 에서 번호를 확인하고 다르면 아래 값을 수정한다.
+>
+> ```python
+> port="COM3",   # 본인 PC의 포트 번호로 변경
+> ```
 
 ### 2. Streamlit 앱
-
-```bash
-conda create -n bus_env python=3.11
-conda activate bus_env
-pip install streamlit requests pandas pyserial    # serial이 아니라 pyserial
-streamlit run app.py
-```
 
 `.streamlit/secrets.toml`에 아래 값을 설정한다.
 
@@ -239,6 +240,14 @@ CITY_CODE = "YOUR_CITY_CODE"
 NODE_ID = "YOUR_STATION_NODE_ID"
 URL = "TAGO_BUS_ARRIVAL_API_URL"
 ```
+
+```bash
+conda create -n bus_env python=3.11
+conda activate bus_env
+pip install -r requirements.txt
+streamlit run app.py
+```
+
 
 ## 🔭 향후 계획
 

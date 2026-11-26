@@ -50,15 +50,6 @@ def predict_char(canvas_result):
     predicted_char = lc.label_to_char[letter_idx[best]].lower()
     confidence = float(letter_probs[best])
 
-    # # [디버그] 모델이 본 28x28 입력, 알파벳 상위 3개, 숫자 포함 전체 1위 (확인 후 삭제 가능)
-    # top3 = np.argsort(letter_probs)[::-1][:3]
-    # overall = int(np.argmax(prediction))
-    # st.session_state.debug = {
-    #     "image": model_input.reshape(28, 28),
-    #     "top3": [(lc.label_to_char[letter_idx[i]].lower(), round(float(letter_probs[i]), 2)) for i in top3],
-    #     "overall": (lc.label_to_char[overall], round(float(prediction[overall]), 2)),
-    # }
-
     # 확신도가 낮으면 인식하지 않음
     return predicted_char if confidence >= 0.4 else ""
 
@@ -154,14 +145,3 @@ with st.container(key="game-shell", border=True):
     with right:
         # 행맨 이미지
         st.image(str(lc.IMG_PATH / f"img_{st.session_state.game_level}{st.session_state.wrong_count}.png"), width="content")
-
-# # [디버그] 마지막 인식 결과 확인용 (확인이 끝나면 이 블록을 삭제하세요)
-# if "debug" in st.session_state:
-#     with st.expander("🛠 인식 디버그 (마지막 제출)", expanded=True):
-#         dbg = st.session_state.debug
-#         c1, c2 = st.columns([1, 2])
-#         with c1:
-#             st.image(dbg["image"], width=140, clamp=True, caption="모델 입력 28x28 (전치 적용)" if TRANSPOSE_INPUT else "모델 입력 28x28")
-#         with c2:
-#             st.write("알파벳 상위 3개:", dbg["top3"])
-#             st.write("숫자 포함 전체 1위:", dbg["overall"])

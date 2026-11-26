@@ -1,4 +1,3 @@
-# Ctrl + Shift + P → Developer: Reload Window 실행
 import requests
 import streamlit as st
 from datetime import datetime
@@ -55,15 +54,7 @@ def send_arduino(df):
     msg = json.dumps(bus_list_dict, ensure_ascii=False) + "\n"
     with serial_lock:
         arduino.write(msg.encode("utf-8"))
-        # while True:
-        # reply = arduino.readline().decode("utf-8", errors="replace").strip()
-        # print(reply)
         st.write("전송완료")
-        # arduino.flush()  # 전송 버퍼의 데이터가 전송될 때까지 기다림
-        # arduino.close()  # 디버깅할 동안만     
-        # st.write("포트닫기")
-        # flag = 1
-    
 
 def btn_list():
     font, voice  = st.columns([1,1])
@@ -91,12 +82,6 @@ def btn_list():
         type="primary",
         use_container_width=True,
     )
-    # phone.button(
-    #     "📲 휴대폰 안내 QR",
-    #     key="phone_qr",
-    #     type="primary",
-    #     use_container_width=True,
-    # )
 
 @st.fragment(run_every="30s")
 def bus_list():
@@ -112,11 +97,6 @@ def bus_list():
         data = response.json()
         # 응답 확인
         result = data["response"]
-        # print(result["body"]["totalCount"])
-
-        # print("body 값:", result["body"])
-        # print("body 자료형:", type(result["body"]).__name__)
-
         if isinstance(result["body"], str):
             df = pd.DataFrame()
         else:
@@ -136,8 +116,6 @@ def bus_list():
             df["vehicle"] = df["vehicletp"].fillna("")
             result = df.loc[df.groupby("routeno")["arrtime"].idxmin()].sort_values(by="arrtime").reset_index(drop=True)
 
-            # print(result)
-            # 아두이노에 데이터 전송
             if flag == 0:
                 send_arduino(result)
 
