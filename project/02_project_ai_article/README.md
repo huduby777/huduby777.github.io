@@ -1,6 +1,7 @@
 # 📰 오늘의 AI 뉴스 - AI 기반 뉴스 TOP 6 큐레이션 웹앱
 
 > AI타임즈 RSS를 수집하고, 생성형 AI가 오늘 꼭 알아야 할 뉴스 TOP 6를 선정·요약·윤리 검토까지 해서 카드뉴스로 보여주는 Streamlit 웹앱 prototype
+
 ![오늘의 AI 뉴스 화면](../../img/news_img.png)
 
 ---
