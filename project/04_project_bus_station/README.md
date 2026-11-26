@@ -32,7 +32,7 @@
 | 데이터 | `Requests` · `Pandas` · `TAGO OpenAPI` (공공데이터포털) |
 | 통신 | `PySerial` (USB 시리얼 9600bps) · `JSON` |
 | 하드웨어 | `Arduino UNO R4 WiFi` · `I2C LCD 16×2` |
-| 아두이노 (C++) | `ArduinoJson` · `LiquidCrystal_I2C` |
+| 아두이노 | `ArduinoJson` · `LiquidCrystal_I2C` |
 
 ## ✨ 주요 기능
 
